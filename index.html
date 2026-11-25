@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RelayDesk · Incident operations</title><link rel="stylesheet" href="./desk.css"></head>
+<body><aside><div class="brand"><i aria-hidden="true">≋</i> RelayDesk</div><div class="navlabel">WORKSPACE</div><nav><button id="navQueue" aria-pressed="true">▤ &nbsp; Incident desk</button><button id="navHandoff" aria-pressed="false">⇄ &nbsp; Shift handoff</button></nav><div class="sidefoot"><span class="dot"></span> Operations workspace<br><small id="mode">Loading workspace</small></div></aside>
+<main><header><span>Operations &nbsp; / &nbsp; <b id="crumb">Incident desk</b></span><a href="https://github.com/mohamadmirzaei79/RelayDesk">GitHub ↗</a></header>
+<section class="hero"><div><div class="over">SERVICE OPERATIONS</div><h1 id="title">Incident desk</h1><p id="subtitle">Triage service disruptions and keep the next shift informed.</p></div><div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></section>
+<div id="message" role="status"></div><div id="metrics" class="metrics"></div>
+<section id="queue"><div class="panels"><div class="box"><div class="boxhead"><div class="over">INBOX</div><h2>Incident queue</h2></div><div class="filters"><input id="search" aria-label="Search incidents" placeholder="Search service, ID or owner…"><select id="filter" aria-label="Filter incidents"><option>All incidents</option><option>Open only</option><option>SEV-1</option><option>Resolved</option></select></div><div id="list"></div></div>
+<div class="box detail" id="detail"></div></div></section>
+<section class="box" id="handoff" hidden><div class="boxhead"><div class="over">SHIFT REPORT</div><h2>Open incidents by owner</h2><p>Includes the latest timeline entry for every open incident.</p></div><div id="report"></div></section>
+<footer>RelayDesk <span>Incident operations · Portfolio edition</span></footer></main><script src="./desk.js" defer></script></body></html>

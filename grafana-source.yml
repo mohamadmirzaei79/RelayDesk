@@ -1,0 +1,3 @@
+apiVersion: 1
+datasources:
+  - {name: RelayDesk, uid: relay-prom, type: prometheus, access: proxy, url: "http://prometheus:9090", isDefault: true}

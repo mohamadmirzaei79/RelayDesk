@@ -1,0 +1,94 @@
+{
+  "incidents": [
+    {
+      "id": "INC-1042",
+      "title": "Elevated checkout latency",
+      "service": "Checkout API",
+      "severity": "SEV-1",
+      "state": "Investigating",
+      "owner": "Maya Chen",
+      "summary": "During the checkout rollout, p95 latency climbed from 220 ms to 910 ms. The payments dependency remains healthy.",
+      "ticket": "OPS-142",
+      "version": 1,
+      "events": [
+        {
+          "kind": "Signal received",
+          "detail": "During the checkout rollout, p95 latency climbed from 220 ms to 910 ms. The payments dependency remains healthy.",
+          "time": "2026-06-18T09:42:00Z"
+        }
+      ]
+    },
+    {
+      "id": "INC-1041",
+      "title": "Delayed search indexing",
+      "service": "Search indexer",
+      "severity": "SEV-2",
+      "state": "Mitigating",
+      "owner": "Leo Park",
+      "summary": "Index updates are waiting behind a batch import. Reads are serving from the previous index.",
+      "ticket": "OPS-141",
+      "version": 1,
+      "events": [
+        {
+          "kind": "Signal received",
+          "detail": "Index updates are waiting behind a batch import. Reads are serving from the previous index.",
+          "time": "2026-06-18T08:56:00Z"
+        }
+      ]
+    },
+    {
+      "id": "INC-1040",
+      "title": "Webhook retries accumulating",
+      "service": "Event gateway",
+      "severity": "SEV-2",
+      "state": "Monitoring",
+      "owner": "Nora Ali",
+      "summary": "A downstream timeout increased retry volume. A smaller batch size is in place.",
+      "ticket": "OPS-140",
+      "version": 1,
+      "events": [
+        {
+          "kind": "Signal received",
+          "detail": "A downstream timeout increased retry volume. A smaller batch size is in place.",
+          "time": "2026-06-18T08:14:00Z"
+        }
+      ]
+    },
+    {
+      "id": "INC-1039",
+      "title": "Cache hit ratio recovered",
+      "service": "Catalog API",
+      "severity": "SEV-3",
+      "state": "Resolved",
+      "owner": "Maya Chen",
+      "summary": "The new cache namespace is warm and the hit ratio is back within the operating range.",
+      "ticket": "OPS-139",
+      "version": 1,
+      "events": [
+        {
+          "kind": "Signal received",
+          "detail": "The new cache namespace is warm and the hit ratio is back within the operating range.",
+          "time": "2026-06-18T07:20:00Z"
+        }
+      ]
+    },
+    {
+      "id": "INC-1038",
+      "title": "Queue consumer lag",
+      "service": "Billing worker",
+      "severity": "SEV-3",
+      "state": "Monitoring",
+      "owner": "Leo Park",
+      "summary": "Consumer capacity was increased after a scheduled billing export.",
+      "ticket": "OPS-138",
+      "version": 1,
+      "events": [
+        {
+          "kind": "Signal received",
+          "detail": "Consumer capacity was increased after a scheduled billing export.",
+          "time": "2026-06-18T06:48:00Z"
+        }
+      ]
+    }
+  ]
+}
