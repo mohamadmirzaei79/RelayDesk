@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-init
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: init
+          image: {{ .Values.backendImage | quote }}
+          command: ["python","ledger.py"]
+          envFrom: [{secretRef: {name: {{ .Values.secretName }}}}]
+{{- range $role := list "api" "gateway" }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ $role }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: {{ $.Release.Name }}-{{ $role }}}
+  template:
+    metadata:
+      labels: {app: {{ $.Release.Name }}-{{ $role }}}
+    spec:
+      containers:
+        - name: {{ $role }}
+          image: {{ ternary $.Values.backendImage $.Values.gatewayImage (eq $role "api") | quote }}
+          envFrom: [{secretRef: {name: {{ $.Values.secretName }}}}]
+          env:
+            - {name: API_URL, value: "http://{{ $.Release.Name }}-api:8000"}
+          ports: [{name: http, containerPort: {{ ternary 8000 8080 (eq $role "api") }}}]
+          readinessProbe:
+            httpGet: {path: {{ ternary "/ready" "/healthz" (eq $role "api") }}, port: http}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: ["ALL"]}}
+          resources:
+            requests: {cpu: 50m, memory: 100Mi}
+            limits: {memory: 512Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-{{ $role }}
+spec:
+  selector: {app: {{ $.Release.Name }}-{{ $role }}}
+  ports: [{port: {{ ternary 8000 8080 (eq $role "api") }}, targetPort: http}]
+{{- end }}
