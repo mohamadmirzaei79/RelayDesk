@@ -27,7 +27,11 @@ function render(){
   const query=byId('search').value.toLowerCase(), filter=byId('filter').value;
   const visible=data.filter(r=>[r.title,r.service,r.owner,r.id].some(v=>v.toLowerCase().includes(query))&&(filter==='All incidents'||filter==='Open only'&&r.state!=='Resolved'||r.severity===filter||r.state===filter));
   if(!visible.some(r=>r.id===selected))selected=visible[0]?.id;
-  byId('list').innerHTML=visible.map(r=>'<button class="item" data-id="'+esc(r.id)+'" aria-pressed="'+(r.id===selected)+'"><div class="line between"><span class="id">'+esc(r.id)+'</span>'+badge(r)+'</div><h3>'+esc(r.title)+'</h3><div class="sub">'+esc(r.service)+' · '+esc(r.state)+'</div></button>').join('')||'<p class="empty">No incidents match these filters.</p>';
+  const card=r=>'<button class="item" data-id="'+esc(r.id)+'" aria-pressed="'+(r.id===selected)+'"><div class="line between"><span class="id">'+esc(r.id)+'</span>'+badge(r)+'</div><h3>'+esc(r.title)+'</h3><div class="sub">'+esc(r.service)+' · '+esc(r.state)+'</div><div class="laneowner">'+esc(r.owner)+'</div></button>';
+  byId('list').innerHTML=states.map(state=>{
+    const records=visible.filter(r=>r.state===state);
+    return '<section class="lane"><div class="lanehead">'+state+'<span>'+records.length+'</span></div>'+ (records.map(card).join('')||'<p class="empty">No matching incidents</p>')+'</section>';
+  }).join('');
   const record=visible.find(r=>r.id===selected);
   byId('detail').innerHTML=record?detail(record):'<p>Select a matching incident to view its timeline.</p>';
   byId('report').innerHTML=[...opened].sort((a,b)=>a.owner.localeCompare(b.owner)).map(r=>'<div class="report"><div class="line">'+badge(r)+'<span class="id">'+esc(r.id)+' · '+esc(r.owner)+'</span></div><h3>'+esc(r.title)+'</h3><p>'+esc(r.state)+' · '+esc(r.events.at(-1).detail||r.events.at(-1).kind)+'</p></div>').join('')||'<p class="empty">No open incidents.</p>';
@@ -56,7 +60,7 @@ document.addEventListener('submit',async e=>{
   }catch(error){byId('message').textContent=error.message;if(live)await load().catch(()=>{});}
   render();
 });
-byId('list').onclick=e=>{const item=e.target.closest('[data-id]');if(item){selected=item.dataset.id;render();if(matchMedia('(max-width:800px)').matches) byId('detail').scrollIntoView({behavior:'smooth'});}};
+byId('list').onclick=e=>{const item=e.target.closest('[data-id]');if(item){selected=item.dataset.id;render();byId('casefile').showModal();}};
 for(const tab of ['Queue','Handoff'])byId('nav'+tab).onclick=()=>{
   screen=tab;const queue=tab==='Queue';byId('queue').hidden=!queue;byId('handoff').hidden=queue;
   byId('title').textContent=byId('crumb').textContent=queue?'Incident desk':'Shift handoff';
