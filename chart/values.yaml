@@ -1,0 +1,3 @@
+backendImage: relaydesk-backend:local
+gatewayImage: relaydesk-gateway:local
+secretName: relaydesk-env
