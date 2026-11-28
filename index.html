@@ -11,12 +11,47 @@ button:active:not(:disabled){transform:translateY(1px)}
 body{background:#f2f0eb;color:#282521}aside{background:#252321}.brand .glyph{color:#ff7d47}.navlabel,.sidefoot,.sidefoot small{color:#c5bcb2}nav button{color:#ddd5ce}nav button[aria-pressed=true]{background:#473c34;box-shadow:inset 3px 0 #ff824f}.hero{background:#ff8954;border:0;border-radius:0;padding:30px clamp(20px,3vw,50px);min-height:160px}.hero h1{font-family:"Arial Black","Segoe UI",sans-serif;font-weight:900;letter-spacing:-.065em}.hero p,.hero .over{color:#372319}.hero .motif{inset:-25% -20px auto auto;height:150%;width:29%;transform:skewX(-24deg);gap:8px}.motif i,.motif i:nth-child(n){border:0;background:#332720;height:100%;width:15%;border-radius:0;opacity:1}.metric,.box{border-radius:4px;border-color:#d3cdc4}.metric{border-top:3px solid #342b25}.metric i{background:#f6ece3;color:#744325}.item[aria-pressed=true]{border-left-color:#cc5223;background:#fff0e5}.boxhead .over,.detail .over,a{color:#824323}.action{background:#854025}.timeline li{border-color:#edaf89}.dot{background:#ff8954}@media(max-width:800px){.hero{min-height:130px}.hero .motif{display:none}.brand{gap:4px}nav .glyph{width:15px;height:15px;margin-right:3px}}
 </style><style>
 @media(min-width:801px){aside{position:static;width:100%;height:61px;flex-direction:row;align-items:center;gap:32px;padding:0 3vw}aside .navlabel{display:none}aside nav{display:flex}.sidefoot{margin:0 0 0 auto}main{margin:0 auto;max-width:1800px}header{height:42px}}.hero{min-height:0;padding:18px 24px;margin:12px 0}.hero h1{font-size:clamp(30px,3vw,46px)}.panels{display:block}.panels>.box{border:0;background:transparent}.boxhead{padding:12px 0}.filters{padding:0 0 14px;max-width:520px}.metrics{display:flex;flex-wrap:wrap;gap:16px;border-bottom:1px solid #c9c2b7;padding:8px 0 12px}.metric{display:flex;gap:8px;padding:0;background:transparent;border:0}.metric i{display:none}.metric b{font-size:18px}.metric small{font:600 13px system-ui}#list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.lane{background:#e5e2da;padding:10px;border-radius:6px;min-height:320px}.lanehead{display:flex;align-items:center;justify-content:space-between;border-top:3px solid #a66b43;padding:9px 0 14px;font-weight:700}.lane:nth-child(2) .lanehead{border-color:#d65e27}.lane:nth-child(3) .lanehead{border-color:#627d87}.lane:nth-child(4) .lanehead{border-color:#56815f}.lanehead span{font:12px monospace;background:white;padding:2px 6px;border-radius:4px}.lane .item,.lane .item[aria-pressed=true]{background:#fffefa;border:1px solid #c8c2b8;border-radius:7px;margin-bottom:8px;padding:14px;box-shadow:0 2px 0 #332a2010}.lane .item:hover{border-color:#9a542e}.lane .item h3{margin:12px 0}.laneowner{margin-top:12px;padding-top:9px;border-top:1px solid #eee6dd;font-size:12px}.lane .empty{font-size:12px;padding:5px}#casefile{margin:0 0 0 auto;width:min(535px,100%);height:100%;max-height:100%;max-width:100%;border:0;padding:0;color:#252522}#casefile::backdrop{background:#29231d77}.casebar{display:flex;justify-content:space-between;align-items:center;background:#312b26;color:white;padding:14px 20px}.casebar button{background:transparent;color:white;border:1px solid #86796a;border-radius:4px;padding:5px 10px}@media(max-width:900px){#list{grid-template-columns:repeat(2,minmax(0,1fr))}.lane{min-height:140px}}@media(max-width:540px){#list{grid-template-columns:1fr}.lane{min-height:0}.metrics{gap:6px 12px}}
-</style></head>
+</style><style>
+/* Dark industrial surfaces and persistent incident navigation from the Stitch concept. */
+:root { color-scheme:dark; --deck:#10131b; --side:#0c1018; --panel:#191e29; --raised:#222936; --rule:#353e4f; --copy:#e7edf7; --muted:#aebbd0; --orange:#ff9a59; }
+body { color:var(--copy); background:var(--deck); }
+aside,.casebar { background:var(--side); }
+aside { border-right:1px solid var(--rule); }
+a,.over,.boxhead .over,.detail .over { color:var(--orange); }
+p,.hero p,.sub,.metric small,.sidefoot small,.laneowner,.id,header,footer,.facts small,.timeline time { color:var(--muted); }
+header,.metrics,.facts,.report { border-color:var(--rule); }
+.hero { background:transparent; border:1px solid var(--rule); border-left:4px solid var(--orange); color:var(--copy); }
+.hero p,.hero .over { color:var(--muted); }
+.hero h1 { font-family:"Inter","Segoe UI",sans-serif; letter-spacing:-.055em; }
+nav button[aria-pressed=true] { background:#ff8e4f; color:#1e1210; box-shadow:none; }
+.metric b { color:#fff; }
+.metric small { color:var(--muted); }
+#list { gap:12px; }
+.lane { background:var(--side); border:1px solid var(--rule); }
+.lanehead span,.lane .item,.lane .item[aria-pressed=true],.box { color:var(--copy); background:var(--panel); border-color:var(--rule); }
+.lane .item[aria-pressed=true],.lane .item:hover { border-color:var(--orange); background:var(--raised); }
+.laneowner { border-color:var(--rule); }
+.chip { background:#344355; color:#dde8f8; }
+.sev1 { color:#ffd2cb; background:#652f32; }
+.sev2 { color:#ffd9a1; background:#53381f; }
+input,select,textarea,#casefile { color:var(--copy); background:var(--panel); border-color:var(--rule); }
+.action { color:#211811; background:var(--orange); }
+#message:not(:empty) { color:#fff1c5; background:#473920; }
+#handoff .boxhead { padding-inline:16px; }
+@media(min-width:1100px) {
+  aside { position:fixed; inset:0 auto 0 0; width:210px; height:auto; display:flex; flex-direction:column; align-items:stretch; gap:0; padding:25px 14px; }
+  aside nav { display:grid; margin-top:32px; }
+  .sidefoot { margin:auto 0 0; }
+  main { margin-left:210px; }
+}
+@media(max-width:800px) { aside { border-right:0; border-bottom:1px solid var(--rule); } }
+</style>
+</head>
 <body><aside><div class="brand"><svg class="glyph" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16 10 5h6l-7 11z M11 19l7-11h4l-7 11z"/></svg> RelayDesk</div><div class="navlabel">WORKSPACE</div><nav><button id="navQueue" aria-pressed="true"><svg class="glyph" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z M3 13h5l1 2h6l1-2h5"/></svg>Incident desk</button><button id="navHandoff" aria-pressed="false"><svg class="glyph" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h15l-4-4 M21 16H6l4 4"/></svg>Shift handoff</button></nav><div class="sidefoot"><span class="dot"></span> Operations workspace<br><small id="mode">Loading workspace</small></div></aside>
 <main><header><span>Operations &nbsp; / &nbsp; <b id="crumb">Incident desk</b></span><a href="https://github.com/mohamadmirzaei79/RelayDesk">GitHub ↗</a></header>
-<section class="hero"><div><div class="over">SERVICE OPERATIONS</div><h1 id="title">Incident desk</h1><p id="subtitle">Triage service disruptions and keep the next shift informed.</p></div><div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></section>
-<div id="message" role="status"></div><div id="metrics" class="metrics"></div>
-<section id="queue"><div class="panels"><div class="box"><div class="boxhead"><div class="over">WORKFLOW</div><h2>Response board</h2></div><div class="filters"><input id="search" aria-label="Search incidents" placeholder="Search service, ID or owner…"><select id="filter" aria-label="Filter incidents"><option>All incidents</option><option>Open only</option><option>SEV-1</option><option>Resolved</option></select></div><div id="list"></div></div>
+<section class="hero"><div><div class="over">SERVICE OPERATIONS</div><h1 id="title">Incident desk</h1><p id="subtitle">Triage service disruptions and keep the next shift informed.</p></div></section>
+<div id="message" role="status"></div><section aria-label="Incident summary" id="metrics" class="metrics"></section>
+<section id="queue"><div class="panels"><div class="box"><div class="boxhead"><div class="over">INCIDENT QUEUE</div><h2>Response board</h2></div><div class="filters"><input id="search" aria-label="Search incidents" placeholder="Search service, ID or owner…"><select id="filter" aria-label="Filter incidents"><option>All incidents</option><option>Open only</option><option>SEV-1</option><option>Resolved</option></select></div><div id="list"></div></div>
 <dialog id="casefile"><div class="casebar"><strong>Incident file</strong><form method="dialog"><button aria-label="Close incident file">Close ×</button></form></div><div class="detail" id="detail"></div></dialog></div></section>
 <section class="box" id="handoff" hidden><div class="boxhead"><div class="over">SHIFT REPORT</div><h2>Open incidents by owner</h2><p>Includes the latest timeline entry for every open incident.</p></div><div id="report"></div></section>
 <footer>RelayDesk <span>Incident operations · Portfolio edition</span></footer></main><script src="./desk.js?v=board1" defer></script></body></html>
